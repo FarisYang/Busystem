@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/busystem">
+		</property>
+		<property name="username" value="root"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+		 <list>
+		  <value>org/busystem/model/User.hbm.xml</value>
+		  <value>org/busystem/model/Bus.hbm.xml</value>
+		  <value>org/busystem/model/St.hbm.xml</value>
+		 </list>
+		</property>
+	</bean>
+	
+	<bean id="userDAO" class="org.busystem.dao.impl.UserDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userService"
+		class="org.busystem.service.impl.UserService">
+		<property name="userDAO">
+			<ref bean="userDAO" />
+		</property>
+	</bean>
+	<bean id="userAction" class="org.busystem.action.UserAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean id="busDAO" class="org.busystem.dao.impl.BusDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="busService"
+		class="org.busystem.service.impl.BusService">
+		<property name="busDAO">
+			<ref bean="busDAO" />
+		</property>
+	</bean>
+	<bean id="busAction" class="org.busystem.action.BusAction">
+		<property name="busService">
+			<ref bean="busService" />
+		</property>
+	</bean>
+	
+	<bean id="stDAO" class="org.busystem.dao.impl.StDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="stService"
+		class="org.busystem.service.impl.StService">
+		<property name="stDAO">
+			<ref bean="stDAO" />
+		</property>
+	</bean>
+	<bean id="stAction" class="org.busystem.action.StAction">
+		<property name="stService">
+			<ref bean="stService" />
+		</property>
+	</bean>
+	</beans>

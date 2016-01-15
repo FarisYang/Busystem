@@ -1,0 +1,78 @@
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+  <struts>
+  <constant name="struts.il8n.encoding" value="UTF-8"/>
+    <include file="struts-default.xml"/>
+    <package name="default" extends="struts-default">
+     
+     <action name="register" class="userAction" method="register">
+			<result name="success">/register_success.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>
+
+		<action name="login" class="userAction" method="checkUser">
+			<result name="success">/login_success.jsp</result>
+			<result name="error">/login_failure.jsp</result>
+		</action>
+
+		<action name="logout" class="userAction" method="logOut">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="updateUserPassword"        class="userAction" method="updateUserPassword">
+            <result name="success">/updatePassword_success.jsp</result>
+            <result name="error">/modifyPassword.jsp</result>
+        </action>
+
+        <action name="updateUserDetail"        class="userAction" method="updateUserDetail">
+            <result name="success">/updateUserDetail_success.jsp</result>
+            <result name="error">/modifyDetail.jsp</result>
+        </action>
+        <action name="addOrUpdateUserDetail"        class="userAction" method="addOrUpdateUserDetail">
+            <result name="success">/adminaction_success.jsp</result>
+            <result name="error">/adminaction_error.jsp</result>
+        </action>
+        <action name="browseUser" class="userAction" method="browseUser">
+            <result name="success">/managerUser.jsp</result>
+        </action>
+        <action name="displayOneUser" class="userAction" method="displayOneUser">
+            <result name="success">/displayOneUser.jsp</result>
+        </action>
+        <action name="deleteOneUser" class="userAction" method="deleteOneUser">
+            <result name="success">/adminaction_success.jsp</result>
+        </action>
+        <action name="browseBus" class="busAction" method="browseBus">
+            <result name="success">/showbus.jsp</result>
+        </action>
+        <action name="manageBus" class="busAction" method="manageBus">
+            <result name="success">/managerBus.jsp</result>
+        </action>
+        <action name="manageOneBus" class="busAction" method="manageOneBus">
+            <result name="success">/manageOneBus.jsp</result>
+        </action>
+        <action name="addOrUpdateBusDetail"        class="busAction" method="addOrUpdateBusDetail">
+            <result name="success">/adminaction_success.jsp</result>
+            <result name="error">/adminaction_error.jsp</result>
+        </action>
+        <action name="deleteOneBus" class="busAction" method="deleteOneBus">
+            <result name="success">/adminaction_success.jsp</result>
+        </action>
+        <action name="browseStByBusid1" class="stAction" method="browseStByBusid">
+            <result name="success">/manageSt.jsp</result>
+        </action>
+        <action name="manageOneSt" class="stAction" method="manageOneSt">
+            <result name="success">/manageOneSt.jsp</result>
+        </action>
+        <action name="browseStByBusid2" class="stAction" method="browseStByBusid">
+            <result name="success">/showst.jsp</result>
+        </action>
+        <action name="addOrUpdateStDetail"        class="stAction" method="addOrUpdateStDetail">
+            <result name="success">/adminaction_success.jsp</result>
+            <result name="error">/adminaction_error.jsp</result>
+        </action>
+        <action name="deleteOneSt" class="stAction" method="deleteOneSt">
+            <result name="success">/adminaction_success.jsp</result>
+        </action>
+    </package>
+  </struts>
